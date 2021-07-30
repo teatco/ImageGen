@@ -5,6 +5,7 @@ import { Footer } from './components/Footer';
 import { getImage, generateImage } from './services/UserService';
 import { Image } from './components/Image';
 import GenerateImage from './components/GenerateImage';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -32,11 +33,17 @@ class App extends Component {
         <div className="container mrgnbtm">
           <div className="row">
             <div className="col-md-8">
-              <GenerateImage
-                onGenerateImage={(image) => {
-                  this.genImage(image);
-                }}
-              ></GenerateImage>
+              <Route
+                path="/generate"
+                render={({ history }) => (
+                  <GenerateImage
+                    onGenerateImage={(image) => {
+                      this.genImage(image);
+                      history.push('/');
+                    }}
+                  ></GenerateImage>
+                )}
+              />
             </div>
 
             <div className="col-md-4">
